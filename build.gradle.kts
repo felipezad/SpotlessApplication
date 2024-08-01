@@ -6,6 +6,7 @@ plugins {
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    ratchetFrom("origin/main")
     kotlin {
         target("**/src/**/*.kt")
         targetExclude("**/build/**/*.kt", "**/generated/**/*.kt")
