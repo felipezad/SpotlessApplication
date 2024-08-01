@@ -6,7 +6,7 @@ plugins {
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    ratchetFrom("origin/main")
+    ratchetFrom("broken-test")
     kotlin {
         target("**/src/**/*.kt")
         targetExclude("**/build/**/*.kt", "**/generated/**/*.kt")
@@ -18,3 +18,4 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         targetExclude("**/build/**/*.kts", "**/generated/**/*.kts")
     }
 }
+
