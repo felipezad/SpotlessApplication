@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
+}
+
+ksp {
+    arg("USE_COMPOSE_VIEWMODEL","true")
 }
 
 android {
@@ -47,6 +53,25 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    sourceSets {
+        named("test") {
+            java.srcDirs("src/test/kotlin")
+        }
+
+        named("main") {
+            java.srcDirs("src/main/kotlin")
+        }
+
+    }
+    // For KSP
+    applicationVariants.configureEach {
+        val variant = this
+        kotlin.sourceSets {
+            named(name) {
+                kotlin.srcDir("build/generated/ksp/${variant.name}/kotlin")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -66,4 +91,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.koinAndroid)
+    implementation(libs.koinAndroidAnnotations)
+    ksp(libs.koinKsp)
+
 }
