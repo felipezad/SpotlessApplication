@@ -6,7 +6,7 @@ plugins {
 }
 
 ksp {
-    arg("USE_COMPOSE_VIEWMODEL","true")
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
 }
 
 android {
